@@ -61,8 +61,8 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public String saveOrUpdateProduct(@Valid ProductForm productForm, BindingResult bindingResult){
-
+    public String saveOrUpdateProduct(@Valid ProductForm productForm,
+                                      BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "product/productform";
         }
