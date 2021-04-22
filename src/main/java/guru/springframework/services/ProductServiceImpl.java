@@ -30,7 +30,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> listAll() {
-        log.debug("Listing all Products");
         List<Product> products = new ArrayList<>();
         productRepository.findAll().forEach(products::add); //fun with Java 8
         return products;
