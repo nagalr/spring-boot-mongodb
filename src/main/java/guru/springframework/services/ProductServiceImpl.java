@@ -4,6 +4,7 @@ import guru.springframework.commands.ProductForm;
 import guru.springframework.converters.ProductFormToProduct;
 import guru.springframework.domain.Product;
 import guru.springframework.repositories.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by jt on 1/10/17.
  */
+@Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -28,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> listAll() {
+        log.debug("Listing all Products");
         List<Product> products = new ArrayList<>();
         productRepository.findAll().forEach(products::add); //fun with Java 8
         return products;
@@ -46,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void delete(String id) {
+        log.debug("Delete Product ID: " + productRepository.findById(id).get().getId());
         productRepository.deleteById(id);
     }
 
@@ -53,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
     public Product saveOrUpdateProductForm(ProductForm productForm) {
         Product savedProduct = saveOrUpdate(productFormToProduct.convert(productForm));
 
-        System.out.println("Saved Product Id: " + savedProduct.getId());
+        log.debug("Saved Product ID: " + savedProduct.getDescription() + savedProduct.getId());
         return savedProduct;
     }
 }

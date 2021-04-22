@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -65,7 +65,7 @@ public class ProductController {
         return "product/productform";
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @PostMapping("/product")
     public String saveOrUpdateProduct(@Valid ProductForm productForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
