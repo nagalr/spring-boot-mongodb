@@ -5,7 +5,6 @@ import guru.springframework.converters.ProductFormToProduct;
 import guru.springframework.domain.Product;
 import guru.springframework.repositories.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,12 +20,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     private ProductFormToProduct productFormToProduct;
 
-    @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ProductFormToProduct productFormToProduct) {
+    public ProductServiceImpl(ProductRepository productRepository,
+                              ProductFormToProduct productFormToProduct) {
         this.productRepository = productRepository;
         this.productFormToProduct = productFormToProduct;
     }
-
 
     @Override
     public List<Product> listAll() {
